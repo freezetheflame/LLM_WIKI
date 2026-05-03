@@ -1,0 +1,4 @@
+.wiki-agent/
+.env
+*.local
+node_modules/
