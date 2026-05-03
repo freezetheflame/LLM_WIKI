@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LLM Wiki Starter</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <span>LLM Wiki</span>
+        <small>updated <b data-updated></b></small>
+      </div>
+      <label class="search">
+        <span>Search</span>
+        <input data-search type="search" placeholder="concept, source, workflow..." />
+      </label>
+      <nav data-page-list class="page-list" aria-label="Wiki pages"></nav>
+      <div class="tags" data-tag-list></div>
+    </aside>
+    <main class="reader">
+      <header class="reader-header">
+        <p data-meta></p>
+        <h1 data-title></h1>
+      </header>
+      <article data-content class="content"></article>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

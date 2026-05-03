@@ -1,0 +1,11 @@
+{
+  "name": "llm-wiki-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/wiki-core.test.mjs && node tests/serve.test.mjs",
+    "serve": "node tools/serve.mjs",
+    "check": "node --check app/wiki-core.js && node --check app/app.js && node --check tools/serve.mjs && node --check tests/wiki-core.test.mjs"
+  }
+}
