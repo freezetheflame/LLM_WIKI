@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import {
   extractWikiLinks,
+  readerPages,
   markdownToHtml,
   searchPages,
   slugify,
@@ -34,6 +35,15 @@ assert.deepEqual(
 assert.equal(searchPages(pages, "rag")[0].path, "wiki/concepts/compilation-over-retrieval.md");
 assert.equal(searchPages(pages, "durable")[0].path, "wiki/index.md");
 assert.deepEqual(searchPages(pages, "missing"), []);
+
+assert.deepEqual(
+  readerPages([
+    { path: "wiki/index.md", audience: "reader" },
+    { path: "agent/profile.md", audience: "maintenance" },
+    { path: "wiki/overview.md" },
+  ]).map((page) => page.path),
+  ["wiki/index.md", "wiki/overview.md"],
+);
 
 const html = markdownToHtml("# Title\n\n- One\n- [[wiki/index.md|Index]]\n\nA **bold** note.");
 assert.match(html, /<h1 id="title">Title<\/h1>/);
