@@ -15,3 +15,7 @@ Reader-facing wiki pages should be visible in the default browser navigation. Ag
 ## 2026-05-05: Use RepoMemoryTest As First Paper Seed
 
 The first serious research direction is `RepoMemoryTest: Project-Memory-Guided Agentic Regression Testing`. Store its proposal, progress, and experiment design under the AI SE Testing column before starting detailed literature collection and prototype work.
+
+## 2026-05-05: Reframe As RepoMemoryBench Then RepoMemoryTest
+
+The research should start with a benchmark and measurement study before introducing a method. The key claim is that testing memory is not generic agent memory; it must be execution-grounded, reliability-aware, and regression-oriented.

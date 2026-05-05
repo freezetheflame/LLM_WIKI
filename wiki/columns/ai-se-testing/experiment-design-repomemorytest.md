@@ -2,7 +2,7 @@
 
 ## Goal
 
-Evaluate whether project memory helps a testing agent perform regression-oriented testing tasks over repeated interactions with real repositories.
+First evaluate whether current agents expose a project-memory gap in regression-oriented testing tasks. Then evaluate whether a testing-specific memory harness closes part of that gap.
 
 ## Experimental Units
 
@@ -20,6 +20,18 @@ Each task should contain:
 - **A1 Retrieval Memory**: can retrieve previous notes through semantic search.
 - **A2 Structured Memory**: can read and update typed memory records.
 - **A3 Hybrid Memory**: combines structured records with semantic retrieval.
+
+## Candidate Real-World Agents
+
+The benchmark should include representative agents only when they are reproducible and scriptable enough for fair comparison.
+
+- SWE-agent or a similar academic SWE agent.
+- OpenHands or another open-source autonomous SWE agent.
+- A CLI coding agent that can operate over a repository and run shell commands.
+- A stateless LLM baseline using the same task prompt and repository context.
+- A retrieval-memory wrapper baseline.
+
+Avoid adding an agent only because it is popular if logs, configuration, or automation cannot be controlled.
 
 ## Memory Records
 
@@ -62,7 +74,7 @@ Start with a small local benchmark:
 
 ## Expected Contribution Shape
 
-- A memory schema for agentic regression testing.
-- An agent loop that uses memory as a first-class testing tool.
-- An empirical comparison of stateless, retrieval, structured, and hybrid memory.
-- A small benchmark or task suite that can be released with the paper.
+- Stage 1: a benchmark and empirical study showing the testing-memory gap in current agents.
+- Stage 2: a memory schema for agentic regression testing.
+- Stage 2: an agent loop that uses memory as a first-class testing tool.
+- Stage 2: an empirical comparison of stateless, retrieval, structured, and hybrid memory.

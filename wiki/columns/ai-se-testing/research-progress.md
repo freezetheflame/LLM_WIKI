@@ -2,9 +2,9 @@
 
 ## Current Stage
 
-Stage: **idea captured / pre-literature-review**.
+Stage: **agenda clarified / pre-literature-review**.
 
-The working idea is [[wiki/columns/ai-se-testing/research-proposals/repomemorytest.md|RepoMemoryTest: Project-Memory-Guided Agentic Regression Testing]].
+The working agenda is [[wiki/columns/ai-se-testing/research-proposals/repomemorytest.md|RepoMemoryBench / RepoMemoryTest: Project-Memory-Guided Agentic Regression Testing]].
 
 ## What We Have
 
@@ -12,10 +12,13 @@ The working idea is [[wiki/columns/ai-se-testing/research-proposals/repomemoryte
 - A first reading list covering SWE-bench, SWE-agent, SWE-bench Verified, TestGen-LLM, CODAMOSA, ChatUniTest, TestPilot, TestGenEval, and SWE-CI.
 - A working thesis: useful AI testing systems should combine generation with verification and preserve validated project memory.
 - A local wiki agent memory model: repo memory plus local private overlay.
+- A two-stage framing: first measure the gap with RepoMemoryBench, then propose the method with RepoMemoryTest.
+- A sharper thesis: memory for testing must be execution-grounded, reliability-aware, and regression-oriented.
 
 ## Immediate Next Work
 
 - Expand related work around memory-augmented agents, CI-oriented SWE agents, test generation quality filters, and long-running repository maintenance.
+- Build a related-work map separating general agent memory from testing-specific history and CI knowledge.
 - Define a minimal pilot dataset: a few small repositories with stable test commands and historical failures.
 - Design memory schemas for commands, failure signatures, flaky tests, environment traps, module risk, and generated-test provenance.
 - Build a first prototype loop that only selects and runs tests before attempting test generation.
@@ -23,6 +26,7 @@ The working idea is [[wiki/columns/ai-se-testing/research-proposals/repomemoryte
 ## Open Risks
 
 - The contribution may look too systems-oriented unless the evaluation is crisp.
+- The method may be dismissed as a generic agent-memory variant unless the testing-specific memory requirements are made explicit.
 - Benchmarks may be noisy if repositories are hard to set up.
 - Generated test quality needs stronger signals than coverage alone.
 - Long-running evaluation can become expensive in model calls and CI time.
@@ -33,6 +37,7 @@ Produce a two-page research note with:
 
 - precise research questions,
 - related-work table,
+- agent selection protocol,
 - pilot benchmark design,
 - first memory schema,
 - minimal prototype plan.

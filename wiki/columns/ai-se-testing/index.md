@@ -21,6 +21,7 @@ Auto SE testing sits at the intersection of testing frameworks, agent tooling, b
 - [[wiki/columns/ai-se-testing/research-proposals/repomemorytest.md|RepoMemoryTest: Project-Memory-Guided Agentic Regression Testing]]
 - [[wiki/columns/ai-se-testing/research-progress.md|RepoMemoryTest Research Progress]]
 - [[wiki/columns/ai-se-testing/experiment-design-repomemorytest.md|RepoMemoryTest Experiment Design]]
+- [[wiki/columns/ai-se-testing/testing-memory-related-work-map.md|Testing Memory Related Work Map]]
 
 ## Working Thesis
 

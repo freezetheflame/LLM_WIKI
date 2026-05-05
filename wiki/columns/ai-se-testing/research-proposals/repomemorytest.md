@@ -1,16 +1,45 @@
-# RepoMemoryTest: Project-Memory-Guided Agentic Regression Testing
+# RepoMemoryBench / RepoMemoryTest: Project-Memory-Guided Agentic Regression Testing
 
 ## One-Line Pitch
 
-RepoMemoryTest studies whether a software testing agent becomes more effective when it carries structured project memory across repeated testing, CI, and regression tasks.
+RepoMemoryBench first measures whether current widely used software agents fail to preserve testing-specific project memory across repeated repository tasks. RepoMemoryTest then studies whether a testing-specific memory harness improves agentic regression testing.
 
 ## Motivation
 
 Many AI testing systems focus on generating tests from a prompt. Real software projects need more than one-shot generation. They need an agent that remembers reliable test commands, recurring failure signatures, flaky tests, environment traps, module risk, and why previous generated tests were accepted or rejected.
 
-## Research Question
+## Research Agenda
 
-Can structured project memory improve an AI testing agent's ability to select tests, diagnose failures, generate useful regression tests, and maintain a repository over time?
+This should be treated as a two-stage research program rather than a single method-first paper.
+
+### Stage 1: RepoMemoryBench
+
+RepoMemoryBench is a measurement and benchmark paper. It should ask whether current coding and SWE agents differ in project-memory-aware regression testing tasks.
+
+Expected contribution:
+
+- define project-memory-aware testing tasks,
+- evaluate representative agents in repeated repository scenarios,
+- identify failure modes around test command discovery, failure diagnosis, flaky tests, environment traps, regression selection, and repeated exploration,
+- show why testing needs a memory harness rather than generic task history.
+
+### Stage 2: RepoMemoryTest
+
+RepoMemoryTest is the method paper. It should introduce a structured testing memory harness and agentic regression loop, then evaluate them on RepoMemoryBench.
+
+Expected contribution:
+
+- testing-specific memory schema,
+- memory update and trust rules grounded in test execution,
+- comparison against stateless agents and generic retrieval memory,
+- analysis of when structured testing memory helps or hurts.
+
+## Research Questions
+
+- RQ1: How do current agents perform on repeated repository testing tasks that require project-specific memory?
+- RQ2: Which testing-memory requirements are not captured by generic agent memory?
+- RQ3: Can a structured testing memory harness improve test selection, failure diagnosis, regression detection, and generated-test quality?
+- RQ4: What are the costs and risks of memory-guided testing agents?
 
 ## Core Hypothesis
 
@@ -31,6 +60,26 @@ The system has three layers:
 - Structured project-memory testing agent.
 - Hybrid memory testing agent that combines structured records with semantic retrieval.
 
+## Agent Selection Principles
+
+Agent choice should not be based on popularity alone. Agents should be:
+
+- widely used or academically recognized,
+- reproducible with fixed versions and configurations,
+- scriptable enough for benchmark execution,
+- capable of exposing logs and actions,
+- comparable under a common task protocol,
+- representative of different agent paradigms.
+
+Candidate categories:
+
+- stateless LLM baseline,
+- CLI coding agent,
+- open-source autonomous SWE agent such as SWE-agent or OpenHands,
+- IDE-like agent if it can be scripted,
+- retrieval-memory baseline,
+- future structured testing-memory agent.
+
 ## Candidate Metrics
 
 - Test command selection accuracy.
@@ -50,6 +99,7 @@ The system has three layers:
 
 ## Initial Related Work Anchors
 
+- [[wiki/columns/ai-se-testing/testing-memory-related-work-map.md|Testing Memory Related Work Map]]
 - [[wiki/columns/ai-se-testing/swe-agent-evaluation.md|SWE Agent Evaluation]]
 - [[wiki/columns/ai-se-testing/ci-and-regression.md|CI And Regression]]
 - [[wiki/columns/ai-se-testing/test-generation.md|Test Generation]]
@@ -57,4 +107,4 @@ The system has three layers:
 
 ## Current Status
 
-This is a research seed. No experiment has been run yet. The next step is structured related-work collection and a small pilot benchmark.
+This is a research seed. No experiment has been run yet. The next step is structured related-work collection around agent memory and testing-specific historical knowledge, followed by a small pilot benchmark.

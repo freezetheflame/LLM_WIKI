@@ -99,6 +99,12 @@ export const wikiManifest = {
       summary: "Initial experimental plan for comparing stateless, retrieval, structured, and hybrid memory agents.",
     },
     {
+      path: "wiki/columns/ai-se-testing/testing-memory-related-work-map.md",
+      title: "Testing Memory Related Work Map",
+      tags: ["column", "research", "memory"],
+      summary: "Map of general agent memory, testing history, and the gap for testing-specific memory harnesses.",
+    },
+    {
       path: "agent/profile.md",
       title: "Wiki Agent Profile",
       tags: ["agent", "memory"],
