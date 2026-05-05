@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import {
+  columnPages,
   extractWikiLinks,
   readerPages,
   markdownToHtml,
@@ -43,6 +44,16 @@ assert.deepEqual(
     { path: "wiki/overview.md" },
   ]).map((page) => page.path),
   ["wiki/index.md", "wiki/overview.md"],
+);
+
+assert.deepEqual(
+  columnPages([
+    { path: "wiki/columns/ai-se-testing/index.md", tags: ["column"] },
+    { path: "wiki/columns/ai-se-testing/test-generation.md", tags: ["column"] },
+    { path: "agent/skills/ingest-source.md", tags: ["column"], audience: "maintenance" },
+    { path: "wiki/overview.md", tags: ["synthesis"] },
+  ], "wiki/columns/ai-se-testing/").map((page) => page.path),
+  ["wiki/columns/ai-se-testing/index.md", "wiki/columns/ai-se-testing/test-generation.md"],
 );
 
 const html = markdownToHtml("# Title\n\n- One\n- [[wiki/index.md|Index]]\n\nA **bold** note.");

@@ -1,5 +1,10 @@
 # Log
 
+## 2026-05-05
+
+- Added a reader-facing dashboard to the local wiki home page with current focus, roadmap phases, AI SE Testing page cards, research lanes, and source shortcuts.
+- Added `columnPages` filtering so dashboard sections can use reader-visible column pages without exposing maintenance pages.
+
 ## 2026-05-04
 
 - Enriched `wiki/index.md` with a roadmap for AI-assisted automated software engineering testing, including research radar, testing agent design, prototype experiments, and CI-loop phases.
