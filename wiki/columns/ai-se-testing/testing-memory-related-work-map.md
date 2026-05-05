@@ -25,6 +25,7 @@ Representative lines to investigate:
 - Reflexion-style verbal feedback,
 - skill libraries such as Voyager,
 - MemGPT / Letta-style memory management,
+- empirical studies of how memory management affects LLM agents,
 - RAG-based agent memory,
 - episodic, semantic, and procedural memory for agents.
 
@@ -78,6 +79,30 @@ Memory for testing should be:
 
 - **RepoMemoryBench**: evaluate whether current agents fail on project-memory-aware regression testing tasks.
 - **RepoMemoryTest**: propose a testing-specific memory harness and agent loop.
+
+## Source Anchors To Read First
+
+Agent memory:
+
+- Reflexion: https://arxiv.org/abs/2303.11366
+- Voyager: https://arxiv.org/abs/2305.16291
+- MemGPT: https://arxiv.org/abs/2310.08560
+- How Memory Management Impacts LLM Agents: https://arxiv.org/abs/2505.16067
+
+SWE agent and benchmark context:
+
+- SWE-bench: https://arxiv.org/abs/2310.06770
+- SWE-agent: https://arxiv.org/abs/2405.15793
+- OpenHands: https://arxiv.org/abs/2407.16741
+- SWE-Bench-CL: https://arxiv.org/abs/2507.00014
+- SWE-CI: https://arxiv.org/abs/2603.03823
+- SetupBench: https://arxiv.org/abs/2507.09063
+
+AI test generation and validation:
+
+- TestGen-LLM: https://arxiv.org/abs/2402.09171
+- CODAMOSA: https://www.microsoft.com/en-us/research/publication/codamosa-escaping-coverage-plateaus-in-test-generation-with-pre-trained-large-language-models/
+- TestGenEval: https://testgeneval.github.io/index.html
 
 ## Working Claim
 

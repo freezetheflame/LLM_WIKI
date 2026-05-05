@@ -1,8 +1,20 @@
-# RepoMemoryBench / RepoMemoryTest: Project-Memory-Guided Agentic Regression Testing
+# RepoMemoryBench -> RepoMemoryTest: Project-Memory-Guided Agentic Regression Testing
 
 ## One-Line Pitch
 
 RepoMemoryBench first measures whether current widely used software agents fail to preserve testing-specific project memory across repeated repository tasks. RepoMemoryTest then studies whether a testing-specific memory harness improves agentic regression testing.
+
+## Final Direction
+
+The first target should be a benchmark paper:
+
+**RepoMemoryBench: Evaluating Testing-Specific Project Memory Requirements in Software Engineering Agents**
+
+The later method paper should be:
+
+**RepoMemoryTest: Structured Project Memory for Agentic Regression Testing**
+
+The core claim is not simply that memory helps agents. The sharper claim is that current general-purpose agents have testing weaknesses that come from missing, misusing, or failing to validate project memory.
 
 ## Motivation
 
@@ -14,18 +26,19 @@ This should be treated as a two-stage research program rather than a single meth
 
 ### Stage 1: RepoMemoryBench
 
-RepoMemoryBench is a measurement and benchmark paper. It should ask whether current coding and SWE agents differ in project-memory-aware regression testing tasks.
+RepoMemoryBench is a measurement and benchmark paper. It should ask whether current coding and SWE agents differ in project-memory-aware regression testing tasks, and whether those differences explain concrete testing failures.
 
 Expected contribution:
 
 - define project-memory-aware testing tasks,
 - evaluate representative agents in repeated repository scenarios,
 - identify failure modes around test command discovery, failure diagnosis, flaky tests, environment traps, regression selection, and repeated exploration,
-- show why testing needs a memory harness rather than generic task history.
+- show why testing needs a memory harness rather than generic task history,
+- create a reusable task format for later memory methods.
 
 ### Stage 2: RepoMemoryTest
 
-RepoMemoryTest is the method paper. It should introduce a structured testing memory harness and agentic regression loop, then evaluate them on RepoMemoryBench.
+RepoMemoryTest is the method paper. It should come after the benchmark gap is convincing. It should introduce a structured testing memory harness and agentic regression loop, then evaluate them on RepoMemoryBench.
 
 Expected contribution:
 
@@ -36,14 +49,26 @@ Expected contribution:
 
 ## Research Questions
 
-- RQ1: How do current agents perform on repeated repository testing tasks that require project-specific memory?
-- RQ2: Which testing-memory requirements are not captured by generic agent memory?
-- RQ3: Can a structured testing memory harness improve test selection, failure diagnosis, regression detection, and generated-test quality?
-- RQ4: What are the costs and risks of memory-guided testing agents?
+- RQ1: Do current general software agents fail on repeated repository testing tasks because they lack testing-specific project memory?
+- RQ2: Which missing memory types explain the failures: test commands, failure signatures, flaky tests, environment traps, module risk, or generated-test provenance?
+- RQ3: Which agent designs handle these memory requirements better, and under what repository conditions?
+- RQ4: Can a structured testing memory harness improve test selection, failure diagnosis, regression detection, and generated-test quality?
+- RQ5: What are the costs and risks of memory-guided testing agents?
 
 ## Core Hypothesis
 
 A testing agent with structured project memory will outperform a stateless agent and a naive retrieval-memory agent on long-running regression tasks, especially when repositories contain repeated failure modes, non-obvious test commands, flaky tests, and environment-specific setup constraints.
+
+## What Would Be Too Weak
+
+The work should not be framed as "add vector memory to a coding agent." That would be easy to dismiss as a generic agent-memory variant.
+
+The testing-specific contribution must be visible in the task design, memory schema, trust rules, and metrics:
+
+- tasks must require executable test knowledge,
+- memory updates must be backed by test execution or CI evidence,
+- metrics must evaluate testing outcomes rather than only task completion,
+- ablations must separate generic retrieval from testing-specific structured memory.
 
 ## Proposed System
 
@@ -107,4 +132,4 @@ Candidate categories:
 
 ## Current Status
 
-This is a research seed. No experiment has been run yet. The next step is structured related-work collection around agent memory and testing-specific historical knowledge, followed by a small pilot benchmark.
+This is a research seed with a finalized first direction. No experiment has been run yet. The next step is structured related-work collection around agent memory, SWE agents, testing-specific historical knowledge, and benchmark design, followed by a small pilot benchmark.
