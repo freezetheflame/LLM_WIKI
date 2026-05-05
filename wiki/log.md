@@ -2,6 +2,7 @@
 
 ## 2026-05-05
 
+- Captured `RepoMemoryTest: Project-Memory-Guided Agentic Regression Testing` as the first paper seed, including proposal, progress, and experiment design pages.
 - Added a reader-facing dashboard to the local wiki home page with current focus, roadmap phases, AI SE Testing page cards, research lanes, and source shortcuts.
 - Added `columnPages` filtering so dashboard sections can use reader-visible column pages without exposing maintenance pages.
 

@@ -81,6 +81,24 @@ export const wikiManifest = {
       summary: "Framework criteria for AI agents that generate, run, and maintain tests.",
     },
     {
+      path: "wiki/columns/ai-se-testing/research-proposals/repomemorytest.md",
+      title: "RepoMemoryTest Research Proposal",
+      tags: ["column", "research", "testing", "memory"],
+      summary: "A paper seed for project-memory-guided agentic regression testing.",
+    },
+    {
+      path: "wiki/columns/ai-se-testing/research-progress.md",
+      title: "RepoMemoryTest Research Progress",
+      tags: ["column", "research", "progress"],
+      summary: "Current status, next work, risks, and milestones for RepoMemoryTest.",
+    },
+    {
+      path: "wiki/columns/ai-se-testing/experiment-design-repomemorytest.md",
+      title: "RepoMemoryTest Experiment Design",
+      tags: ["column", "research", "experiment"],
+      summary: "Initial experimental plan for comparing stateless, retrieval, structured, and hybrid memory agents.",
+    },
+    {
       path: "agent/profile.md",
       title: "Wiki Agent Profile",
       tags: ["agent", "memory"],

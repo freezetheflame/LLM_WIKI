@@ -16,6 +16,12 @@ Auto SE testing sits at the intersection of testing frameworks, agent tooling, b
 - [[wiki/columns/ai-se-testing/ci-and-regression.md|CI And Regression]]
 - [[wiki/columns/ai-se-testing/testing-frameworks.md|Testing Frameworks]]
 
+## Research Seeds
+
+- [[wiki/columns/ai-se-testing/research-proposals/repomemorytest.md|RepoMemoryTest: Project-Memory-Guided Agentic Regression Testing]]
+- [[wiki/columns/ai-se-testing/research-progress.md|RepoMemoryTest Research Progress]]
+- [[wiki/columns/ai-se-testing/experiment-design-repomemorytest.md|RepoMemoryTest Experiment Design]]
+
 ## Working Thesis
 
 Useful AI testing systems should combine generation with verification. The strongest pattern across the sources is not "ask an LLM for tests"; it is "use an LLM inside a loop that can compile, run, filter, repair, and preserve only measurable improvements."

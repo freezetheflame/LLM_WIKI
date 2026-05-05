@@ -19,6 +19,7 @@ The wiki is currently growing around **AI-assisted automated software engineerin
 - Design a local testing agent that can read a repository, find test commands, run focused tests, interpret failures, and propose new tests.
 - Track project memory for recurring failures, flaky tests, reliable commands, and environment setup traps.
 - Use [[wiki/concepts/memory-harness.md|Memory Harness]] thinking to keep source notes, test history, and private machine details in separate memory surfaces.
+- Develop [[wiki/columns/ai-se-testing/research-proposals/repomemorytest.md|RepoMemoryTest]] as the first serious paper direction.
 
 ### Phase 3: Prototype Experiments
 
@@ -49,6 +50,9 @@ The wiki is currently growing around **AI-assisted automated software engineerin
 - [[wiki/columns/ai-se-testing/swe-agent-evaluation.md|SWE Agent Evaluation]]
 - [[wiki/columns/ai-se-testing/ci-and-regression.md|CI And Regression]]
 - [[wiki/columns/ai-se-testing/testing-frameworks.md|Testing Frameworks]]
+- [[wiki/columns/ai-se-testing/research-proposals/repomemorytest.md|RepoMemoryTest Research Proposal]]
+- [[wiki/columns/ai-se-testing/research-progress.md|RepoMemoryTest Progress]]
+- [[wiki/columns/ai-se-testing/experiment-design-repomemorytest.md|RepoMemoryTest Experiment Design]]
 
 ## Open Research Tracks
 
