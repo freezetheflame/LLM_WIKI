@@ -1,4 +1,4 @@
-import { columnPages, markdownToHtml, readerPages, searchPages } from "./wiki-core.js";
+import { buildTOC, columnPages, markdownToHtml, readerPages, searchPages } from "./wiki-core.js";
 import { wikiManifest } from "./wiki-data.js";
 
 const state = {
@@ -14,6 +14,27 @@ const searchInput = document.querySelector("[data-search]");
 const content = document.querySelector("[data-content]");
 const title = document.querySelector("[data-title]");
 const meta = document.querySelector("[data-meta]");
+
+// ── Section definitions for tree nav ──
+const NAV_SECTIONS = [
+  { label: "Home", prefix: null, match: (p) => p.path === "wiki/index.md" || p.path === "wiki/overview.md" || p.path === "wiki/log.md" },
+  { label: "Concepts", prefix: "wiki/concepts/" },
+  { label: "AI SE Testing", prefix: "wiki/columns/ai-se-testing/" },
+  { label: "Agent Work Patterns", prefix: "wiki/columns/agent-work-patterns/" },
+  { label: "Sources", prefix: "wiki/sources/" },
+  { label: "Workflows", prefix: "wiki/workflows/" },
+];
+
+function getSectionForPage(page) {
+  for (const sec of NAV_SECTIONS) {
+    if (sec.match) {
+      if (sec.match(page)) return sec.label;
+    } else if (sec.prefix && page.path.startsWith(sec.prefix)) {
+      return sec.label;
+    }
+  }
+  return null;
+}
 
 async function init() {
   document.querySelector("[data-updated]").textContent = wikiManifest.updated;
@@ -43,7 +64,14 @@ async function renderPage(path) {
   title.textContent = page.title;
   meta.textContent = `${page.path} · ${page.tags.join(", ")}`;
   const markdown = await loadMarkdown(page.path);
-  content.innerHTML = path === "wiki/index.md" ? renderHome(markdown) : markdownToHtml(markdown);
+
+  if (path === "wiki/index.md") {
+    content.innerHTML = renderHome(markdown);
+  } else {
+    const useTOC = !path.endsWith("/index.md") && !path.startsWith("agent/");
+    content.innerHTML = markdownToHtml(markdown, { toc: useTOC });
+  }
+
   content.querySelectorAll("a[data-path]").forEach((link) => {
     link.addEventListener("click", () => {
       state.currentPath = link.dataset.path;
@@ -62,9 +90,14 @@ async function loadMarkdown(path) {
   return text;
 }
 
+// ═══════════════════════════════════════
+// HOMEPAGE DASHBOARD
+// ═══════════════════════════════════════
 function renderHome(markdown) {
   const aiTestingPages = columnPages(state.pages, "wiki/columns/ai-se-testing/")
     .filter((page) => page.path !== "wiki/columns/ai-se-testing/index.md");
+  const agentPatternPages = columnPages(state.pages, "wiki/columns/agent-work-patterns/")
+    .filter((page) => page.path !== "wiki/columns/agent-work-patterns/index.md");
   const sourcePages = state.readerPages.filter((page) => page.tags.includes("source"));
   const roadmap = [
     ["Research Radar", "Track primary sources, benchmarks, project reports, and trend shifts."],
@@ -73,16 +106,12 @@ function renderHome(markdown) {
     ["Long-Running CI Loop", "Move from one-shot fixes toward CI-aware maintenance and failure memory."],
   ];
   const tracks = [
-    "Verified test generation",
-    "Agentic regression loop",
-    "Benchmark lifecycle",
-    "GUI/E2E testing agents",
-    "Fuzzing and security testing",
-    "Project memory for testing",
+    "Verified test generation", "Agentic regression loop", "Benchmark lifecycle",
+    "GUI/E2E testing agents", "Fuzzing and security testing", "Project memory for testing",
   ];
 
   return `
-    <section class="home-dashboard" aria-label="Wiki roadmap dashboard">
+    <section class="home-dashboard" aria-label="Wiki dashboard">
       <div class="focus-panel">
         <p class="eyebrow">Current focus</p>
         <h2>AI-assisted automated software engineering testing</h2>
@@ -90,51 +119,59 @@ function renderHome(markdown) {
         <div class="dashboard-actions">
           ${homeLink("wiki/columns/ai-se-testing/index.md", "Open Column")}
           ${homeLink("wiki/columns/ai-se-testing/reading-list.md", "Reading List")}
+          ${agentPatternPages.length > 0 ? homeLink("wiki/columns/agent-work-patterns/index.md", "Agent Patterns") : ""}
         </div>
       </div>
+
       <div class="roadmap-panel">
         <p class="eyebrow">Roadmap</p>
         <div class="roadmap-steps">
-          ${roadmap
-            .map(
-              ([name, summary], index) => `
-                <article class="roadmap-step">
-                  <span>${index + 1}</span>
-                  <div>
-                    <h3>${name}</h3>
-                    <p>${summary}</p>
-                  </div>
-                </article>
-              `,
-            )
-            .join("")}
+          ${roadmap.map(([name, summary], i) => `
+            <article class="roadmap-step">
+              <span>${i + 1}</span>
+              <div><h3>${name}</h3><p>${summary}</p></div>
+            </article>`).join("")}
         </div>
       </div>
+
       <div class="dashboard-section">
         <div class="section-heading">
-          <p class="eyebrow">Column pages</p>
+          <p class="eyebrow">Column</p>
           <h2>AI SE Testing</h2>
         </div>
         <div class="link-grid">
-          ${aiTestingPages.map((page) => pageCard(page)).join("")}
+          ${aiTestingPages.map(pageCard).join("")}
         </div>
       </div>
+
+      ${agentPatternPages.length > 0 ? `
+      <div class="dashboard-section">
+        <div class="section-heading">
+          <p class="eyebrow">Column</p>
+          <h2>Agent Work Patterns</h2>
+        </div>
+        <div class="link-grid">
+          ${agentPatternPages.map(pageCard).join("")}
+        </div>
+      </div>` : ""}
+
       <div class="dashboard-section">
         <div class="section-heading">
           <p class="eyebrow">Open tracks</p>
           <h2>Research lanes</h2>
         </div>
         <div class="track-list">
-          ${tracks.map((track) => `<span>${track}</span>`).join("")}
+          ${tracks.map((t) => `<span>${t}</span>`).join("")}
         </div>
       </div>
+
       <div class="dashboard-section">
         <div class="section-heading">
           <p class="eyebrow">Sources</p>
-          <h2>Recent source pages</h2>
+          <h2>Reference pages</h2>
         </div>
         <div class="source-list">
-          ${sourcePages.map((page) => pageCard(page)).join("")}
+          ${sourcePages.map(pageCard).join("")}
         </div>
       </div>
     </section>
@@ -151,27 +188,67 @@ function pageCard(page) {
     <a class="dashboard-card" href="#/${encodeURIComponent(page.path)}" data-path="${page.path}">
       <strong>${page.title}</strong>
       <span>${page.summary}</span>
-    </a>
-  `;
+    </a>`;
 }
 
+// ═══════════════════════════════════════
+// SEARCH & SIDEBAR
+// ═══════════════════════════════════════
 function handleSearch() {
   renderPageList(searchPages(state.readerPages, searchInput.value));
 }
 
 function renderPageList(pages) {
   pageList.innerHTML = "";
-  pages.forEach((page) => {
-    const link = document.createElement("a");
-    link.href = `#/${encodeURIComponent(page.path)}`;
-    link.className = page.path === state.currentPath ? "page-link active" : "page-link";
-    link.innerHTML = `<span>${page.title}</span><small>${page.summary}</small>`;
-    pageList.append(link);
-  });
+
+  const hasQuery = searchInput.value.trim().length > 0;
+
+  if (hasQuery) {
+    // Flat list when searching
+    pages.forEach((page) => pageList.append(buildPageLink(page)));
+    return;
+  }
+
+  // Tree mode: group by section
+  const grouped = new Map();
+  const ungrouped = [];
+
+  for (const page of pages) {
+    const section = getSectionForPage(page);
+    if (section) {
+      if (!grouped.has(section)) grouped.set(section, []);
+      grouped.get(section).push(page);
+    } else {
+      ungrouped.push(page);
+    }
+  }
+
+  for (const [label, groupPages] of grouped) {
+    const header = document.createElement("div");
+    header.className = "nav-section";
+    header.textContent = label;
+    pageList.append(header);
+
+    for (const page of groupPages) {
+      pageList.append(buildPageLink(page));
+    }
+  }
+
+  for (const page of ungrouped) {
+    pageList.append(buildPageLink(page));
+  }
+}
+
+function buildPageLink(page) {
+  const link = document.createElement("a");
+  link.href = `#/${encodeURIComponent(page.path)}`;
+  link.className = page.path === state.currentPath ? "page-link active" : "page-link";
+  link.innerHTML = `<span>${page.title}</span><small>${page.summary}</small>`;
+  return link;
 }
 
 function renderTags() {
-  const tags = [...new Set(state.readerPages.flatMap((page) => page.tags))].sort();
+  const tags = [...new Set(state.readerPages.flatMap((p) => p.tags))].sort();
   tagList.innerHTML = "";
   tags.forEach((tag) => {
     const button = document.createElement("button");
